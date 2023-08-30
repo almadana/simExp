@@ -1,0 +1,13 @@
+<form method="post">
+    <p>Rate the word <strong>{{ word }}</strong> on the following scales:</p>
+    
+    <label>Good</label>
+    <input type="range" name="good_bad" min="1" max="7">
+    <label>Bad</label>
+
+    <label>Heavy</label>
+    <input type="range" name="heavy_light" min="1" max="7">
+    <label>Light</label>
+    
+    <input type="submit" value="Submit">
+</form>

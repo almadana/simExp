@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content="http://digital.psico.edu.uy/lectura/resultados/leer.png" />
+    <title>Estudio de similitud semántica | Formulario sociodemográfico </title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+
+    <header>
+      <h1>
+        Formulario sociodemográfico
+      </h1>
+    </header>
+
+    <form action="{{ url_for('sociodemo') }}" method="post">
+        <!-- Add form fields for sociodemographic data here. For example: -->
+
+          <div class="pregunta">
+          <div class="contenido">
+            Edad:
+          </div>
+          <input type="number" name="age" id="age">
+          </div>
+
+
+          <div class="pregunta">
+          <div class="contenido">
+            Género:
+          </div>
+          <div class="respuesta">
+            <ul>
+              <li>
+                <input type="radio" value="mujer" name="gender" required /> Mujer
+              </li>
+              <li>
+                <input type="radio" value="hombre" name="gender" required /> Hombre
+              </li>
+              <li>
+                <input type="radio" value="no_contesta" name="gender" required /> Prefiero no aclarar
+              </li>
+              <li>
+                <input type="radio" value="otro" name="gender" required /> Prefiero describirme: <input type="text" value="" name="genero_otro" />
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pregunta">
+          <div class="contenido">País de nacimiento:</div>
+        <select name="country_of_birth" required>
+            <!-- You might want to populate this dynamically or have a more comprehensive list -->
+            <option value="arg">Argentina</option>
+            <option value="uy">Uruguay</option>
+            <option value="other">Otro</option>
+        </div>
+
+      <div class="pregunta">
+          <div class="contenido">
+            ¿Cuál es tu máximo nivel de estudios completados?
+          </div>
+          <div class="respuesta">
+            <ul>
+              <li>
+                <input type="radio" value="posgrado" name="nivel_estudios" required />
+                Posgrado
+              </li>
+              <li><input type="radio" value="grado" name="nivel_estudios" required />
+                Grado o Terciario
+              </li>
+              <li><input type="radio" value="bachillerato" name="nivel_estudios" required />
+                Bachillerato (secundaria/media superior)
+              </li>
+              <li><input type="radio" value="secundaria" name="nivel_estudios" required />
+                Secundaria básica (media básica)
+              </li>
+              <li><input type="radio" value="primaria" name="nivel_estudios" required />
+                Primaria
+              </li>
+              <li><input type="radio" value="incompleta" name="nivel_estudios" required />
+                No completé educación primaria
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+
+
+        <input type="submit" value="Siguiente">
+    </form>
+</body>
+</html>

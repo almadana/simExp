@@ -1,0 +1,225 @@
+#response-rectangle {
+    width: 80%;
+    height: 100px;
+    border: 2px dashed #ccc;
+    margin-bottom: 20px;
+}
+
+.draggable-word {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#target-words {
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+@font-face {
+  font-family: comfortaa;
+  src: url(font/comfortaa/Comfortaa-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font: 1rem "comfortaa", sans-serif;
+}
+
+h1 {
+  font-size: 4rem;
+  color: hsl(186, 100%, 33%);
+  text-align: center;
+}
+
+.logos  {
+  text-align: center;
+}
+
+main {
+  max-width: 100rem;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+footer {
+  margin-top: 1rem;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .autores {
+  opacity: 50%;
+}
+
+footer .institucion {
+}
+
+.actions {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.actions .button {
+  background: none;
+  border: 3px solid hsl(0,0%,70%);
+  border-radius: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: hsl(186, 100%, 33%);
+  font: 2rem "comfortaa", sans-serif;
+}
+
+.button.quiero_participar {
+  border: 3px solid hsl(0,0%,70%);
+  border-radius: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  font-size: 2rem;
+  box-shadow: 3px 2px 5px hsl(0,0%,40%);
+}
+
+footer .terminos_uso {
+  opacity: 50%;
+}
+
+form .question {
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+}
+
+form ul {
+  list-style-type: none;
+}
+
+form table tbody tr:nth-child(odd) {
+  background: hsl(0,0%,94%);
+}
+
+form table tbody td {
+  padding-right: 0.2rem;
+  padding-left: 0.2rem;
+}
+
+.input_date {
+  margin-top: 1rem;
+}
+
+.input_date .day {
+  width: 2.5rem;
+}
+
+.input_date .month {
+  width: 2.5rem;
+}
+
+.input_date .year {
+  width: 4rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.excercise {
+  margin-bottom: 10rem;
+}
+
+.excercise .text {
+/*  white-space: pre-wrap; */
+    font-family: "serif";
+}
+
+.excercise.long_question .title {
+  display: none;
+}
+
+.excercise.long_question .text {
+  display: none;
+}
+
+.excercise.long_question .question_wrap {
+  height: 90vh;
+  bottom: auto;
+  top: 0px;
+  padding: 1rem 0.2rem 0.2rem 0.2rem;
+}
+
+.excercise .question_wrap {
+  position: fixed;
+  bottom: 0px;
+  overflow-y:scroll;
+  left: 0px;
+  background: #dddddd;
+  padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+  border-top: 1px solid black;
+  width: 100%;
+  font-family: "serif";
+  text-align: center;
+}
+
+.excercise .question_wrap_main {
+  display: flex;
+  justify-content: center;
+}
+
+.excercise.long_question .question_wrap .question_wrap_header {
+  display: none;
+}
+
+.excercise.short_question .question_wrap .question_wrap_main {
+  display: none;
+}
+
+.excercise.short_question .question_wrap .question_wrap_footer {
+  display: none;
+}
+
+.excercise .question_wrap .question_wrap_main .answer {
+  text-align: left;
+}
+
+.excercise .question_wrap_main .next {
+  flex: 0 1 5rem;
+  margin-left: 1rem;
+}
+
+.excercise .question_wrap_main .prev {
+  flex: 0 1 5rem;
+  margin-right: 1rem;
+}
+
+.pregunta {
+  border-top : 1px solid hsl(186, 100%, 33%);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.question-title {
+  color: hsl(186, 100%, 33%);
+}
+
+@media (min-width: 1024px) {
+  .excercise .question_wrap_header {
+    display: none;
+  }
+
+  .excercise.short_question .question_wrap .question_wrap_main,
+  .excercise.long_question .question_wrap .question_wrap_main {
+    display: flex;
+  }
+}

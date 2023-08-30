@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<h2>{{ cue_word }}</h2>
+
+<div id="response-rectangle">
+    <!-- Items dragged here will appear -->
+</div>
+
+
+<div id="target-words">
+    {% for word in target_words %}
+    <div class="draggable-word" data-word="{{ word }}">{{ word }}</div>
+    {% endfor %}
+</div>
+
+
+<button id="next-button">Next</button>
+<div id="message"></div>
+
+
+
+<script>
+$(document).ready(function() {
+    initializeDraggables();
+
+    $("#response-rectangle").droppable({
+        accept: ".draggable-word",
+        drop: function(event, ui) {
+            const maxWords = 5;
+            const wordBeingDragged = ui.draggable.text().trim();
+
+            let wordAlreadyExists = false;
+            $(this).find('.draggable-word').each(function() {
+                if ($(this).text().trim() === wordBeingDragged) {
+                    wordAlreadyExists = true;
+                    return false; // exit the .each() loop early
+                }
+            });
+
+            if ($(this).find(".draggable-word").length < maxWords || wordAlreadyExists === true) {
+                ui.draggable.draggable('option', 'revert', false);
+                $(this).append(ui.draggable);
+                updateSelectedWords();
+                initializeDraggables();  // reinitialize draggables in case any property changed
+            } else {
+                ui.draggable.draggable('option', 'revert', true);
+            }
+        }
+    });
+
+
+    $("#target-words").droppable({
+        accept: ".draggable-word",
+        drop: function(event, ui) {
+            ui.draggable.draggable('option', 'revert', false);
+            $(this).append(ui.draggable);
+            updateSelectedWords();
+            initializeDraggables();  // reinitialize draggables
+        }
+    });
+
+function initializeDraggables() {
+    $(".draggable-word").draggable({
+        appendTo: 'body',  // temporarily move to the body while dragging
+        helper: function() {
+            return $(this).clone().width($(this).width());  // ensure cloned helper has the same width
+        },
+        connectToSortable: "#response-rectangle",
+        revert: "invalid",
+        containment: "document",
+        cursor: "move",
+    });
+}
+
+    function updateSelectedWords() {
+        let selectedWords = [];
+        $("#response-rectangle .draggable-word").each(function() {
+            selectedWords.push($(this).text());
+        });
+        $("#selected-words-input").val(selectedWords.join(','));
+    }
+});
+
+
+$("#next-button").on("click", function() {
+    // Gather selected words
+    const selectedWords = [];
+    $("#response-rectangle").children().each(function() {
+        selectedWords.push($(this).text().trim());
+    });
+
+    // Save to server
+    $.post("/similarity_save_response", { words: selectedWords }, function(data) {
+        if (data.status === "success") {
+            // Reload the page for the next cue and target set
+            location.reload();
+        } else if (data.status === "completed") {
+            // Display a completion message
+            $("#message").text(data.message);
+            $("#next-button").prop("disabled", true);
+        }
+    });
+});
+
+</script>
