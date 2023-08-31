@@ -1,10 +1,19 @@
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="static/css/style.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content="http://digital.psico.edu.uy/lectura/resultados/leer.png" />
+    <title>Estudio de similitud semántica </title>
+    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<h2>{{ cue_word }}</h2>
+<main>
+
+<h2 id="cue_word">{{ cue_word }}</h2>
 
 <div id="response-rectangle">
     <!-- Items dragged here will appear -->
@@ -17,11 +26,14 @@
     {% endfor %}
 </div>
 
-
-<button id="next-button">Next</button>
+<br>
+<div>
+<button id="next-button" class="button medium">Siguiente</button>
+<p id="saving_status"></p>
+</div>
 <div id="message"></div>
 
-
+</main>
 
 <script>
 $(document).ready(function() {
@@ -94,15 +106,22 @@ $("#next-button").on("click", function() {
     });
 
     // Save to server
-    $.post("/similarity_save_response", { words: selectedWords }, function(data) {
+    cue_word = document.querySelector("h2#cue_word").textContent;
+    document.getElementById("saving_status").innerHTML = "Guardando datos..."
+    $.post("/similarity_save_response", { words: selectedWords, cue: cue_word  }, function(data) {
         if (data.status === "success") {
             // Reload the page for the next cue and target set
+            document.getElementById("saving_status").innerHTML = ""
             location.reload();
         } else if (data.status === "completed") {
-            // Display a completion message
-            $("#message").text(data.message);
-            $("#next-button").prop("disabled", true);
+            // redirecto to next task
+            //$.post("/semantic_similarity_pause")
+            location.href = "/semantic_similarity_pause";
         }
+        else if (data.status === "done") {
+            location.href = "/instrucciones_feat";
+        }
+
     });
 });
 

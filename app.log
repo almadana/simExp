@@ -1,0 +1,166 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:27] "GET /semantic_similarity_drag HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:32] "GET /reset_index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:35] "GET /semantic_similarity_drag HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:35] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:40] "POST /similarity_save_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:40] "GET /semantic_similarity_drag HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:39:40] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:00] "[32mPOST /similarity_save_response HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:00] "GET /instrucciones_feat HTTP/1.1" 200 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:09] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:10] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:10] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:10] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:10] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:10] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:11] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -
+ERROR:app:Exception on /similarity_save_response [POST]
+Traceback (most recent call last):
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/anaconda3/envs/webFlask/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/perezoso/Dropbox/projects/cicada/semanticSim/website/simExp/app.py", line 149, in save_response
+    cue_word = cue_and_targets[session["current_index"]]['cue']
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [30/Aug/2023 23:40:11] "[35m[1mPOST /similarity_save_response HTTP/1.1[0m" 500 -

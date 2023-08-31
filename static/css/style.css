@@ -22,7 +22,7 @@
 
 @font-face {
   font-family: comfortaa;
-  src: url(font/comfortaa/Comfortaa-Regular.ttf);
+  src: url(../font/comfortaa/Comfortaa-Regular.ttf);
   font-weight: normal;
   font-style: normal;
 }
@@ -90,6 +90,17 @@ footer .institucion {
   font-size: 2rem;
   box-shadow: 3px 2px 5px hsl(0,0%,40%);
 }
+
+.button.medium {
+  border: 2px solid hsl(0,0%,70%);
+  border-radius: 6px;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  box-shadow: 3px 2px 5px hsl(0,0%,40%);
+}
+
 
 footer .terminos_uso {
   opacity: 50%;
