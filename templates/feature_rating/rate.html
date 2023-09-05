@@ -10,22 +10,31 @@
 
 
 <body>
+<br><br>
 <main>
 <form action="{{ url_for('feature_save') }}" method="post">
-    <h2>{{ word }}</h2>
-    {% for dimension in dimensions %}
-  
-  
-  <div class="dimension">
-  
-  <label>{{ dimension[0] }}</label>
-    <input type="range" class="range "name="{{ dimension[0] }}" min="0" max="10">  <output class="bubble"></output>
-    <label>{{ dimension[1] }}</label>
-
-  </div>
-  
-   {% endfor %}
     
+  
+  
+  <table class="rating-table">
+  <tr>
+  <td colspan=3 align="center">
+  <h2>{{ word }}</h2>
+  </td>
+  </tr>
+
+  {% for dimension in dimensions %}
+    <tr>
+  
+    <td class="dim-label-col left-label"><label>{{ dimension[0] }}</label>  </td>
+    <td class="range-col"><input type="range" class="range "name="{{ dimension[0] }}" min="0" max="10"> 
+     
+    </td>
+    <td class="dim-label-col"><label>{{ dimension[1] }}</label>  </td>
+
+  </tr>
+   {% endfor %}
+    </table>
     <input type="submit" value="Submit" class="button medium">
     
 </form>

@@ -5,9 +5,79 @@
     margin-bottom: 20px;
 }
 
-.range {
+.rating-table{
   width: 80%;
+  height: 180px;
+  background-color: #ffffff;
 }
+
+.rating-table tr,
+.rating-table td,
+.rating-table th {
+    background-color: transparent;
+}
+
+
+.rating-table td {
+  height: 45px;
+}
+
+#.range {
+#  width: 80%;
+#}
+
+
+.dim-label-col{
+  width: 20%;
+}
+
+.range-col{
+  width: 60%;
+}
+
+.left-label{
+  text-align: right;
+}
+
+
+input[type="range"] {
+    width: 100%; /* Adjust as needed */
+    background-color: transparent; /* Makes the track transparent */
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: #ccc;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    width: 16px; /* Adjust as needed */
+    height: 16px;
+    border-radius: 50%;
+    background: #007aff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px; /* Adjust to center the thumb over the track */
+}
+
+input[type="range"]::-moz-range-track {
+    height: 2px;
+    background: #ccc;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px; /* Adjust as needed */
+    height: 16px;
+    border-radius: 50%;
+    background: #007aff;
+    cursor: pointer;
+}
+  
+
 
 .bubble {
   background: red;
@@ -20,7 +90,7 @@
 }
 .bubble::after {
   content: "";
-  position: absolute;
+  position: relative;
   width: 2px;
   height: 2px;
   background: red;
@@ -141,9 +211,9 @@ form ul {
   list-style-type: none;
 }
 
-form table tbody tr:nth-child(odd) {
+/*form table tbody tr:nth-child(odd) {
   background: hsl(0,0%,94%);
-}
+}*/
 
 form table tbody td {
   padding-right: 0.2rem;
