@@ -42,14 +42,12 @@ class SemanticTask(db.Model):
 
 class DimensionTask(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String, nullable=False) #category as a string!
     participant_id = db.Column(db.String, db.ForeignKey('participant.id'), nullable=False)
     cue_word = db.Column(db.String, nullable=False)
-    dim1 = db.Column(db.Integer, nullable=False)  #dimension coordinates as signed Integer
-    dim2 = db.Column(db.Integer, nullable=False)
-    dim3 = db.Column(db.Integer, nullable=False)
-    dim4 = db.Column(db.Integer, nullable=False)
-    dim5 = db.Column(db.Integer, nullable=False)
-
+    dim = db.Column(db.String, nullable=False)  #dimension coordinates as signed Integer
+    rating = db.Column(db.Integer, nullable=False)  #dimension coordinates as signed Integer
+    
 # This secret key should ideally be in a config file and not hardcoded.
 app.secret_key = 'supersecretkey'
 
@@ -58,6 +56,14 @@ app.secret_key = 'supersecretkey'
 categories = stimuli.get_cats() # this gives 3 random categories
 cat_cue_targets = stimuli.gen_cue_cats(categories)
 list_of_categories = list(categories.keys())
+
+
+# list of categories for feature task
+
+categories_feat = stimuli.get_cats() # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
+cat_dimensions = stimuli.get_dimensions(categories_feat) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
+list_of_categories_feat = list(categories_feat.keys())
+
 
 
 # ITINERARY
@@ -155,7 +161,7 @@ def semantic_similarity_pause():
 def save_response():
     selected_words = request.form.getlist('words[]')
     cue_word = request.form.getlist('cue')
-    cue_word =cue_word[0] #this should only be an element, but it's a list with only one element...
+    cue_word = cue_word[0] #this should only be an element, but it's a list with only one element...
 
     current_category = list_of_categories[session["category_index"]]
     # Retrieve the participant_id from the session
@@ -188,6 +194,8 @@ def save_response():
 def reset_index():
     session["word_index"] = 0
     session["category_index"] = 0
+    session["word_index_feat"] = 0
+    session["category_index_feat"] = 0
     return "Index reset to 0"
 
 @app.route('/feature_rating_intro', methods=['GET', 'POST'])
@@ -199,10 +207,61 @@ def feature_rating_intro():
 
 # Feature Rating Route
 @app.route('/feature_rating', methods=['GET', 'POST'])
-def feature_rating_route():
-    # You'd put the logic for the feature rating task here. 
-    # For now, I'll just return a placeholder template.
-    return render_template('feature_rating/rate.html')
+def feature_rating():
+    session.setdefault("word_index_feat", 0)
+    session.setdefault("category_index_feat", 0)
+    current_category = list_of_categories_feat[session["category_index_feat"]]
+    cue_words = categories_feat[current_category]
+    current_dimensions = cat_dimensions[current_category]
+    # Check if current index is out of range
+    #if session["word_index_feat"] >= len(list_of_categories_feat):
+     #   return "All tasks completed. Thank you!"  # You can customize this response or redirect as needed
+    current_word = cue_words[session["word_index_feat"]]    
+    return render_template('feature_rating/rate.html',word=current_word, dimensions=current_dimensions)
+
+#save feature rating data
+@app.route('/feature_save', methods=['POST'])
+def feature_save():
+    current_category = list_of_categories_feat[session["category_index_feat"]]
+    cue_words = categories_feat[current_category]
+    current_dimensions = cat_dimensions[current_category] #this gives you a list of two-item lists
+    participant_id = session.get("participant_id")
+    if participant_id is None:
+        participant_id = "nones"
+    current_word = cue_words[session["word_index_feat"]]
+                             
+    # get dimension names to retrieve rating values
+    dim0 = [dim[0] for dim in current_dimensions]
+    
+    print(dim0)
+    
+    ratings = [request.form.get(x) for x in dim0]
+    
+    print(ratings)
+    
+    for dim,num in zip(dim0,ratings):
+        entry = DimensionTask(category=current_category,participant_id=participant_id, cue_word=current_word, dim=dim,rating=int(num))
+        db.session.add(entry)
+    db.session.commit()
+    
+    session["word_index_feat"] += 1
+    
+    if session["word_index_feat"]   >= len(cue_words):
+        session["word_index_feat"] = 0
+        session["category_index_feat"] += 1
+        if session["category_index_feat"]   >= len(list_of_categories_feat):
+            return redirect(url_for('gracias'))
+        return redirect(url_for('feature_pause'))
+    
+    return redirect(url_for('feature_rating'))
+
+
+# Feature rating pause between categories
+@app.route('/feature_pause', methods=['GET', 'POST'])
+def feature_pause():
+    return render_template('feature_rating/pause.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

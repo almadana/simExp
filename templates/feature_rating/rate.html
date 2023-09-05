@@ -1,13 +1,62 @@
-<form method="post">
-    <p>Rate the word <strong>{{ word }}</strong> on the following scales:</p>
-    
-    <label>Good</label>
-    <input type="range" name="good_bad" min="1" max="7">
-    <label>Bad</label>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content="http://digital.psico.edu.uy/lectura/resultados/leer.png" />
+    <title>Estudio de similitud semántica </title>
+    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+</head>
 
-    <label>Heavy</label>
-    <input type="range" name="heavy_light" min="1" max="7">
-    <label>Light</label>
+
+
+<body>
+<main>
+<form action="{{ url_for('feature_save') }}" method="post">
+    <h2>{{ word }}</h2>
+    {% for dimension in dimensions %}
+  
+  
+  <div class="dimension">
+  
+  <label>{{ dimension[0] }}</label>
+    <input type="range" class="range "name="{{ dimension[0] }}" min="0" max="10">  <output class="bubble"></output>
+    <label>{{ dimension[1] }}</label>
+
+  </div>
+  
+   {% endfor %}
     
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="button medium">
+    
 </form>
+</main>
+
+<script>
+
+const allRanges = document.querySelectorAll(".dimension");
+allRanges.forEach(wrap => {
+  const range = wrap.querySelector(".range");
+  const bubble = wrap.querySelector(".bubble");
+
+  range.addEventListener("input", () => {
+    setBubble(range, bubble);
+  });
+  setBubble(range, bubble);
+});
+
+function setBubble(range, bubble) {
+  const val = range.value;
+  const min = range.min ? range.min : 0;
+  const max = range.max ? range.max : 100;
+  const newVal = Number(((val - min) * 100) / (max - min));
+  bubble.innerHTML = val;
+
+  // Sorta magic numbers based on size of the native UI thumb
+  bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+}
+
+
+</script>
+
+
+</body>
