@@ -18,7 +18,15 @@ def make_json(csv_filepath, json_filepath):
         jsonf.write(json.dumps(data,indent=4))
 
 
+
+
 csv_filepath = "static/data/cat_emo.csv"
 json_filepath = "static/data/cat_emo.json"
+
+make_json(csv_filepath,json_filepath)
+
+
+csv_filepath = "static/data/dimensions.csv"
+json_filepath = "static/data/dimensions.json"
 
 make_json(csv_filepath,json_filepath)

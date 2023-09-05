@@ -6,6 +6,8 @@ import json
 
 json_file_emo = "static/data/cat_emo.json"
 
+json_file_emo_dims = "static/data/dimensions.json"
+
 # load data into dicts
 
 def load_json(jsonfile):
@@ -20,6 +22,16 @@ def get_cats(n_cats = 3):
     keys = list(emo_cats.keys())
     rand_keys = [keys[i] for i in rand.permutation(len(keys)) ]
     return {key: emo_cats[key] for key in rand_keys[:n_cats]}
+
+
+def dim_split(list):
+    return( [x.split("/") for x in list] )
+
+def get_dimensions(selected_cats):
+    dimensions = load_json(json_file_emo_dims)
+    cats = list(selected_cats.keys())
+    selected_dims = [dim_split(dimensions[i]) for i in cats]
+    return {key: sd for key,sd in zip(cats,selected_dims)}
 
 
 #toma un diccionario, genera un diccionario (claves: categorías) de lista de diccionarios, con claves cue: y targets;

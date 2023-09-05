@@ -1,0 +1,86 @@
+{
+    "ser": [
+        "ansiedad/tranquilidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "cobard\u00eda/valent\u00eda",
+        "brutalidad/ternura",
+        "indiferencia/empat\u00eda"
+    ],
+    "sentirse": [
+        "tristeza/felicidad",
+        "ansiedad/tranquilidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "odio/amor",
+        "des\u00e1nimo/\u00e1nimo"
+    ],
+    "eventos": [
+        "aburrimiento/diversi\u00f3n",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "cobard\u00eda/valent\u00eda",
+        "brutalidad/ternura",
+        "des\u00e1nimo/\u00e1nimo"
+    ],
+    "salud-enfermedad/bienestar": [
+        "asco/agrado",
+        "ansiedad/tranquilidad",
+        "des\u00e1nimo/\u00e1nimo",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "verg\u00fcenza/orgullo"
+    ],
+    "lugares": [
+        "aburrimiento/diversi\u00f3n",
+        "tristeza/felicidad",
+        "ansiedad/tranquilidad",
+        "odio/amor",
+        "des\u00e1nimo/\u00e1nimo"
+    ],
+    "mentalizaci\u00f3n": [
+        "tristeza/felicidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "odio/amor",
+        "verg\u00fcenza/orgullo",
+        "indiferencia/empat\u00eda"
+    ],
+    "acci\u00f3n": [
+        "asco/agrado",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "odio/amor",
+        "verg\u00fcenza/orgullo",
+        "brutalidad/ternura"
+    ],
+    "ocio": [
+        "aburrimiento/diversi\u00f3n",
+        "ansiedad/tranquilidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "odio/amor",
+        "des\u00e1nimo/\u00e1nimo"
+    ],
+    "clim\u00e1ticos": [
+        "tristeza/felicidad",
+        "ansiedad/tranquilidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "brutalidad/ternura",
+        "des\u00e1nimo/\u00e1nimo"
+    ],
+    "v\u00ednculos": [
+        "ansiedad/tranquilidad",
+        "odio/amor",
+        "verg\u00fcenza/orgullo",
+        "indiferencia/empat\u00eda",
+        "aburrimiento/diversi\u00f3n"
+    ],
+    "animales": [
+        "asco/agrado",
+        "ansiedad/tranquilidad",
+        "cobard\u00eda/valent\u00eda",
+        "odio/amor",
+        "brutalidad/ternura"
+    ],
+    "deporte": [
+        "tristeza/felicidad",
+        "frustraci\u00f3n/satisfacci\u00f3n",
+        "odio/amor",
+        "aburrimiento/diversi\u00f3n",
+        "des\u00e1nimo/\u00e1nimo"
+    ]
+}
