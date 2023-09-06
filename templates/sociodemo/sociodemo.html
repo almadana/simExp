@@ -16,8 +16,9 @@
       <h1>
         Formulario sociodemográfico
       </h1>
+      <p>Contesta las siguientes preguntas y selecciona las opciones que se acerquen más a tu situación.</p>
     </header>
-
+    <main>
     <form action="{{ url_for('sociodemo') }}" method="post">
         <!-- Add form fields for sociodemographic data here. For example: -->
 
@@ -52,13 +53,20 @@
         </div>
 
         <div class="pregunta">
-          <div class="contenido">Principal país durante la infancia:</div>
-        <select name="country_of_birth" required>
-            <option value="arg">Argentina</option>
-            <option value="uy">Uruguay</option>
-            <option value="other">Otro</option>
-            </select>
-        </div>
+          <div class="contenido">Principal país de residencia durante la infancia:</div>
+          <div class ="respuesta">
+          <ul>
+                <li>
+                <input type="radio" value="ar" name="country_of_birth" required /> Argentina
+                </li>
+                <li>
+                <input type="radio" value="uy" name="country_of_birth" required /> Uruguay
+                </li>
+                <li>
+                <input type="radio" value="other" name="country_of_birth" required /> Otro
+                </li>
+          </ul>
+          </div>
 
       <div class="pregunta">
           <div class="contenido">
@@ -91,20 +99,32 @@
 
                 <div class="pregunta">
           <div class="contenido">Idioma que usas más frecuentemente:</div>
-        <select name="language" required>
-            <option value="arg-rp">Argentina: Español Rioplatense</option>
-            <option value="uy-rp">Uruguay: Español Rioplatense</option>
-            <option value="arg-c">Argentina: Cordobés</option>
-            <option value="arg-o">Argentina: Otros</option>
-            <option value="uy-p">Uruguay: Portuñol</option>
-            <option value="other">Otro</option>
-            </select>
-        </div>
-
-
-
-
+          
+          <div class ="respuesta">
+          <ul>
+                <li>
+                <input type="radio" value="ar-rp" name="language" required /> Argentina: Español Rioplatense
+                </li>
+                <li>
+                <input type="radio" value="uy-rp" name="language" required /> Uruguay: Español Rioplatense
+                </li>
+                <li>
+                <input type="radio" value="ar-co" name="language" required /> Argentina: Cordobés
+                </li>                
+                <li>
+                <input type="radio" value="ar-oth" name="language" required /> Argentina: otro
+                </li>
+                <li>
+                <input type="radio" value="uy-pñ" name="language" required /> Uruguay: Portuñol
+                </li>
+                <li>
+                <input type="radio" value="other" name="language" required /> Otro
+                </li>
+          </ul>
+          </div>
+          
         <input class="button" type="submit" value="Siguiente">
     </form>
+    </main>
 </body>
 </html>
