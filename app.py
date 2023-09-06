@@ -67,7 +67,7 @@ list_of_categories_feat = list(categories_feat.keys())
 
 
 # ITINERARY
-# index -> info -> consentimiento -> sociodemo -> instrucciones_drag  -> semantic_similarity_drag  (similarity_save_response)  -> instrucciones_rating -> feature_rating (feature_save)-> gracias
+# index -> info -> consentimiento -> intro -> sociodemo -> instrucciones_drag  -> semantic_similarity_drag  (similarity_save_response)  -> instrucciones_rating -> feature_rating (feature_save)-> gracias
 
 @app.route('/index.html', methods=['GET', 'POST'])
 def index():
@@ -86,6 +86,16 @@ def info():
 @app.route('/consentimiento', methods=['GET', 'POST'])
 def consentimiento():
     return render_template('info/consentimiento.html')
+
+@app.route('/gracias_igual', methods=['GET', 'POST'])
+def gracias_igual():
+    return render_template('index/gracias.html')
+
+
+@app.route('/intro', methods=['GET', 'POST'])
+def intro():
+    return render_template('index/intro.html')
+
 
 @app.route('/gracias', methods=['GET', 'POST'])
 def gracias():
