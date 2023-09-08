@@ -1,0 +1,13 @@
+blinker==1.6.2
+click==8.1.6
+Flask 
+Flask-SQLAlchemy 
+Flask-WTF==1.1.1
+greenlet 
+itsdangerous==2.1.2
+Jinja2 
+MarkupSafe 
+numpy 
+SQLAlchemy 
+Werkzeug 
+WTForms==3.0.1
