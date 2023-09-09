@@ -2,6 +2,7 @@
 
 import numpy.random as rand
 import json
+import os
 
 
 json_file_emo = "static/data/cat_emo.json"
@@ -10,15 +11,15 @@ json_file_emo_dims = "static/data/dimensions.json"
 
 # load data into dicts
 
-def load_json(jsonfile):
-    with open(jsonfile) as jsonf:
+def load_json(base_dir,jsonfile):
+    with open(os.path.join(base_dir,jsonfile)) as jsonf:
         return json.load(jsonf)
 
 
 # sortea n_cats categorias de la lista completa, y la devuelve en un dict
 #devuelve un diccionario
-def get_cats(n_cats = 3):
-    emo_cats = load_json(json_file_emo)
+def get_cats(n_cats = 3,base_dir="./"):
+    emo_cats = load_json(base_dir,json_file_emo)
     keys = list(emo_cats.keys())
     rand_keys = [keys[i] for i in rand.permutation(len(keys)) ]
     return {key: emo_cats[key] for key in rand_keys[:n_cats]}
@@ -27,8 +28,8 @@ def get_cats(n_cats = 3):
 def dim_split(list):
     return( [x.split("/") for x in list] )
 
-def get_dimensions(selected_cats):
-    dimensions = load_json(json_file_emo_dims)
+def get_dimensions(selected_cats,base_dir):
+    dimensions = load_json(base_dir,json_file_emo_dims)
     cats = list(selected_cats.keys())
     selected_dims = [dim_split(dimensions[i]) for i in cats]
     return {key: sd for key,sd in zip(cats,selected_dims)}
