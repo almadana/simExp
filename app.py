@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 import string, random, logging, stimuli
-
+import os
 
 #logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
@@ -14,11 +14,13 @@ def generate_random_string(length=8):
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite for simplicity; you can use others
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite for simplicity
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # DATA MODELS
@@ -53,15 +55,15 @@ app.secret_key = 'supersecretkey'
 
 # LOAD STIMULI
 
-categories = stimuli.get_cats() # this gives 3 random categories
+categories = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories
 cat_cue_targets = stimuli.gen_cue_cats(categories)
 list_of_categories = list(categories.keys())
 
 
 # list of categories for feature task
 
-categories_feat = stimuli.get_cats() # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
-cat_dimensions = stimuli.get_dimensions(categories_feat) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
+categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
+cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
 list_of_categories_feat = list(categories_feat.keys())
 
 
@@ -69,7 +71,7 @@ list_of_categories_feat = list(categories_feat.keys())
 # ITINERARY
 # index -> info -> consentimiento -> intro -> sociodemo -> instrucciones_drag  -> semantic_similarity_drag  (similarity_save_response)  -> instrucciones_rating -> feature_rating (feature_save)-> gracias
 
-@app.route('/index.html', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         return redirect(url_for('info'))
