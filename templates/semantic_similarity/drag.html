@@ -108,7 +108,7 @@ $("#next-button").on("click", function() {
     // Save to server
     cue_word = document.querySelector("h2#cue_word").textContent;
     document.getElementById("saving_status").innerHTML = "Guardando datos..."
-    $.post("/similarity_save_response", { words: selectedWords, cue: cue_word  }, function(data) {
+    $.post("http://digital.psico.edu.uy/semantica/similarity_save_response", { words: selectedWords, cue: cue_word  }, function(data) {
         if (data.status === "success") {
             // Reload the page for the next cue and target set
             document.getElementById("saving_status").innerHTML = ""
