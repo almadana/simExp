@@ -19,30 +19,30 @@
     <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
 </div>
 
+<div id="content">
+        <br><br>
+        <h2 id="cue_word">{{ cue_word }}</h2>
 
-<br><br>
-<h2 id="cue_word">{{ cue_word }}</h2>
+        <div id="response-rectangle">
+            <!-- Items dragged here will appear -->
+        </div>
 
-<div id="response-rectangle">
-    <!-- Items dragged here will appear -->
+
+        <div id="target-words">
+            {% for word in target_words %}
+            <div class="draggable-word" data-word="{{ word }}">{{ word }}</div>
+            {% endfor %}
+        </div>
+
+        <br>
+        <div>
+        <button id="next-button" class="button medium">Siguiente</button>
+        <p id="saving_status"></p>
+        </div>
+        <div id="message"></div>
+
+        </main>
 </div>
-
-
-<div id="target-words">
-    {% for word in target_words %}
-    <div class="draggable-word" data-word="{{ word }}">{{ word }}</div>
-    {% endfor %}
-</div>
-
-<br>
-<div>
-<button id="next-button" class="button medium">Siguiente</button>
-<p id="saving_status"></p>
-</div>
-<div id="message"></div>
-
-</main>
-
 <script>
 $(document).ready(function() {
     initializeDraggables();
@@ -136,10 +136,13 @@ $("#next-button").on("click", function() {
 
 window.addEventListener("orientationchange", function() {
     let alertBox = document.getElementById('rotateDeviceAlert');
+    let contenido = document.getElementById('content')
     if (window.orientation === 0) { // 0 means portrait
         alertBox.style.display = 'block';
+        contenido.style.display = 'none';
     } else {
         alertBox.style.display = 'none';
+        contenido.style.display = 'block';
     }
 });
 
