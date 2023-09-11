@@ -1,12 +1,12 @@
 #response-rectangle {
-    width: 80%;
+    width: 90%;
     height: 100px;
     border: 2px dashed #ccc;
     margin-bottom: 20px;
 }
 
 .rating-table{
-  width: 80%;
+  width: 90%;
   height: 180px;
   background-color: #ffffff;
 }
@@ -133,9 +133,9 @@ h1 {
 }
 
 main {
-  max-width: 100rem;
-  margin-left: 20%;
-  margin-right: 20%;
+  max-width: 120rem;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 footer {
