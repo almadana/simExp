@@ -5,6 +5,23 @@
     margin-bottom: 20px;
 }
 
+#progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    margin-top: 20px;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4CAF50; /* Green color, change as required */
+    text-align: right;
+    line-height: 10px; /* Same as height of container */
+    color: white;
+}
+
+
 .rating-table{
   width: 90%;
   height: 180px;

@@ -65,15 +65,25 @@ def createStimuli():
     # list of categories for feature task
     categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
     cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
-    list_of_categories_feat = list(categories_feat.keys())
+    #list_of_categories_feat = list(categories_feat.keys())
     
     
     #set as default in current session
     session.setdefault('categories',categories)
     session.setdefault('categories_feat',categories_feat)
+    session.setdefault('trial_total',trial_total)
+    
     session.setdefault('cat_cue_targets',cat_cue_targets)
     session.setdefault('cat_dimensions',cat_dimensions)
+    session.setdefault('trial_total_Feat',trial_total_feat)
 
+
+
+def session_categories():
+    return session["categories"], session["cat_cue_targets"]
+
+def session_categories_feat():
+    return session["categories_feat"], session["cat_dimensions"]
 
 # ITINERARY
 # index -> info -> consentimiento -> intro -> sociodemo -> instrucciones_drag  -> semantic_similarity_drag  (similarity_save_response)  -> instrucciones_rating -> feature_rating (feature_save)-> gracias
@@ -158,10 +168,12 @@ def semantic_similarity_drag():
     session.setdefault("word_index", 0)
     session.setdefault("category_index", 0)
 
-    if not session["categories"]:
+    if "categories" not in session.keys():
         createStimuli()
-    categories = session["categories"]
-    cat_cue_targets = session["cat_cue_targets"]
+    
+    #get current set of categories and targets for the session
+    categories, cat_cue_targets = session_categories()
+    
     list_of_categories = list(categories)
     current_category = list_of_categories[session["category_index"]]
     cue_and_targets = cat_cue_targets[current_category]
@@ -184,6 +196,11 @@ def save_response():
     selected_words = request.form.getlist('words[]')
     cue_word = request.form.getlist('cue')
     cue_word = cue_word[0] #this should only be an element, but it's a list with only one element...
+
+
+    #get current set of categories and targets for the session
+    categories, cat_cue_targets = session_categories()
+    list_of_categories = list(categories)
 
     current_category = list_of_categories[session["category_index"]]
     # Retrieve the participant_id from the session
@@ -232,6 +249,12 @@ def feature_rating_intro():
 def feature_rating():
     session.setdefault("word_index_feat", 0)
     session.setdefault("category_index_feat", 0)
+    
+    #get current set of categories and dimensions for the session
+    categories_feat, cat_dimensions = session_categories_feat()
+    list_of_categories_feat = list(categories_feat)
+    
+    
     current_category = list_of_categories_feat[session["category_index_feat"]]
     cue_words = categories_feat[current_category]
     current_dimensions = cat_dimensions[current_category]
@@ -244,6 +267,11 @@ def feature_rating():
 #save feature rating data
 @app.route('/feature_save', methods=['POST'])
 def feature_save():
+    #get current set of categories and dimensions for the session
+    categories_feat, cat_dimensions = session_categories_feat()
+    list_of_categories_feat = list(categories_feat)
+    
+    #get current category
     current_category = list_of_categories_feat[session["category_index_feat"]]
     cue_words = categories_feat[current_category]
     current_dimensions = cat_dimensions[current_category] #this gives you a list of two-item lists

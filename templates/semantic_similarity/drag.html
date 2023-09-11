@@ -19,6 +19,11 @@
     Quizás veas mejor esta página si rotas el dispositivo en modo horizontal.
 </div>
 
+<div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
+
 <div id="content">
         <br><br>
         <h2 id="cue_word">{{ cue_word }}</h2>
@@ -82,6 +87,10 @@ $(document).ready(function() {
             initializeDraggables();  // reinitialize draggables
         }
     });
+    let progressPercentage = ( {{ trial_n }} / {{ trial_total }}  ) * 100;
+    $('#progress-bar').width(progressPercentage + '%');
+    
+    
 
 function initializeDraggables() {
     $(".draggable-word").draggable({
