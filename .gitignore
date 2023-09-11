@@ -1,2 +1,2 @@
 site.db
-*/*.pyc
+__pycache__/*

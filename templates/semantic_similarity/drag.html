@@ -14,6 +14,12 @@
 
 
 <main>
+
+<div id="rotateDeviceAlert">
+    <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
+</div>
+
+
 <br><br>
 <h2 id="cue_word">{{ cue_word }}</h2>
 
@@ -126,5 +132,16 @@ $("#next-button").on("click", function() {
 
     });
 });
+
+
+window.addEventListener("orientationchange", function() {
+    let alertBox = document.getElementById('rotateDeviceAlert');
+    if (window.orientation === 0) { // 0 means portrait
+        alertBox.style.display = 'block';
+    } else {
+        alertBox.style.display = 'none';
+    }
+});
+
 
 </script>

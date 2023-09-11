@@ -27,6 +27,20 @@
 #}
 
 
+/* This will hide the alert by default */
+#rotateDeviceAlert {
+    display: none;
+}
+
+/* This media query targets devices with a max width of 767px in portrait mode */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    #rotateDeviceAlert {
+        display: block;
+    }
+}
+
+
+
 .dim-label-col{
   width: 20%;
 }
