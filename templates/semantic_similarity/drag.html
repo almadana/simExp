@@ -16,7 +16,7 @@
 <main>
 
 <div id = "rotateDeviceAlert">
-    <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
+    Quizás veas mejor esta página si rotas el dispositivo en modo horizontal.
 </div>
 
 <div id="content">
@@ -137,13 +137,10 @@ $("#next-button").on("click", function() {
 
 function checkOrientation() {
     let alertBox = document.getElementById('rotateDeviceAlert');
-    let contenido = document.getElementById('content')
     if (window.orientation === 0) { // 0 means portrait
         alertBox.style.display = 'block';
-        contenido.style.display = 'none';
     } else {
         alertBox.style.display = 'none';
-        contenido.style.display = 'block';
     }
 }
 
