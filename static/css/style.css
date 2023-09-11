@@ -30,7 +30,7 @@
 /* This will hide the alert by default */
 #rotateDeviceAlert {
     display: none;
-    color: red;
+    color: #ff0000;
 }
 
 /* This media query targets devices with a max width of 767px in portrait mode */
