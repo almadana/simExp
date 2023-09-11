@@ -70,7 +70,8 @@ function setBubble(range, bubble) {
   bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
 
-window.addEventListener("orientationchange", function() {
+
+function checkOrientation() {
     let alertBox = document.getElementById('rotateDeviceAlert');
     let contenido = document.getElementById('content')
     if (window.orientation === 0) { // 0 means portrait
@@ -80,7 +81,13 @@ window.addEventListener("orientationchange", function() {
         alertBox.style.display = 'none';
         contenido.style.display = 'block';
     }
-});
+}
+
+#chequea orientación al cargar la página
+checkOrientation();
+
+window.addEventListener("orientationchange", checkOrientation)
+
 
 </script>
 

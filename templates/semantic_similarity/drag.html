@@ -15,7 +15,7 @@
 
 <main>
 
-<div id="rotateDeviceAlert">
+<div id = "rotateDeviceAlert">
     <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
 </div>
 
@@ -134,7 +134,8 @@ $("#next-button").on("click", function() {
 });
 
 
-window.addEventListener("orientationchange", function() {
+
+function checkOrientation() {
     let alertBox = document.getElementById('rotateDeviceAlert');
     let contenido = document.getElementById('content')
     if (window.orientation === 0) { // 0 means portrait
@@ -144,7 +145,13 @@ window.addEventListener("orientationchange", function() {
         alertBox.style.display = 'none';
         contenido.style.display = 'block';
     }
-});
+}
+
+#chequea orientación al cargar la página
+checkOrientation();
+
+window.addEventListener("orientationchange", checkOrientation)
+
 
 
 </script>
