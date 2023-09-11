@@ -51,21 +51,28 @@ class DimensionTask(db.Model):
     rating = db.Column(db.Integer, nullable=False)  #dimension coordinates as signed Integer
     
 # This secret key should ideally be in a config file and not hardcoded.
-app.secret_key = 'supersecretkey'
-
-# LOAD STIMULI
-
-categories = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories
-cat_cue_targets = stimuli.gen_cue_cats(categories)
-list_of_categories = list(categories.keys())
+app.secret_key = 'i0TFFnfg3C'
 
 
-# list of categories for feature task
+def createStimuli():
+    # LOAD STIMULI
 
-categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
-cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
-list_of_categories_feat = list(categories_feat.keys())
+    categories = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories
+    cat_cue_targets = stimuli.gen_cue_cats(categories)
+    
 
+
+    # list of categories for feature task
+    categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
+    cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
+    list_of_categories_feat = list(categories_feat.keys())
+    
+    
+    #set as default in current session
+    session.setdefault('categories',categories)
+    session.setdefault('categories_feat',categories_feat)
+    session.setdefault('cat_cue_targets',cat_cue_targets)
+    session.setdefault('cat_dimensions',cat_dimensions)
 
 
 # ITINERARY
@@ -151,8 +158,11 @@ def semantic_similarity_drag():
     session.setdefault("word_index", 0)
     session.setdefault("category_index", 0)
 
-
-
+    if not session["categories"]:
+        createStimuli()
+    categories = session["categories"]
+    cat_cue_targets = session["cat_cue_targets"]
+    list_of_categories = list(categories)
     current_category = list_of_categories[session["category_index"]]
     cue_and_targets = cat_cue_targets[current_category]
 
