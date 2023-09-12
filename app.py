@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session, send_file
 from flask_sqlalchemy import SQLAlchemy
 import string, random, logging, stimuli
 import os
@@ -323,6 +323,11 @@ def feature_save():
 @app.route('/feature_pause', methods=['GET', 'POST'])
 def feature_pause():
     return render_template('feature_rating/pause.html')
+
+
+@app.route('/og_big.png', methods=['GET'])
+def og_big():
+    return send_file('static/img/og_big.png')   
 
 
 
