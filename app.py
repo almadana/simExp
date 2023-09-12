@@ -56,26 +56,30 @@ app.secret_key = 'i0TFFnfg3C'
 
 def createStimuli():
     # LOAD STIMULI
-
-    categories = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories
+    n_cats = 3
+    categories = stimuli.get_cats(n_cats,BASE_DIR) # this gives 3 random categories
     cat_cue_targets = stimuli.gen_cue_cats(categories)
-    
+    cat_lengths = [len(cat) for cat in categories.values()]
+    trial_total = sum(cat_lengths)
 
 
     # list of categories for feature task
     categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
     cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
     #list_of_categories_feat = list(categories_feat.keys())
+    cat_lengths = [len(cat) for cat in categories_feat.values()]
+    trial_total_feat = sum(cat_lengths)
     
     
     #set as default in current session
-    session.setdefault('categories',categories)
-    session.setdefault('categories_feat',categories_feat)
-    session.setdefault('trial_total',trial_total)
+    session['categories'] = categories
+    session['categories_feat'] = categories_feat
     
-    session.setdefault('cat_cue_targets',cat_cue_targets)
-    session.setdefault('cat_dimensions',cat_dimensions)
-    session.setdefault('trial_total_Feat',trial_total_feat)
+    session['cat_cue_targets'] = cat_cue_targets
+    session['cat_dimensions'] = cat_dimensions
+    
+    session['trial_total'] = trial_total
+    session['trial_total_feat'] = trial_total_feat
 
 
 
@@ -167,23 +171,28 @@ def semantic_similarity_drag():
     # Initialize the current index in session if it doesn't exist
     session.setdefault("word_index", 0)
     session.setdefault("category_index", 0)
+    session.setdefault("trial_index",0)
 
-    if "categories" not in session.keys():
-        createStimuli()
+    #if "categories" not in session.keys():
+    createStimuli()
     
     #get current set of categories and targets for the session
     categories, cat_cue_targets = session_categories()
     
-    list_of_categories = list(categories)
+    list_of_categories = list(categories.keys())
     current_category = list_of_categories[session["category_index"]]
     cue_and_targets = cat_cue_targets[current_category]
-
+    
+    session['trial_index'] += 1
+    trial_total = session['trial_total']
+    
+    
     # Check if current index is out of range
     if session["word_index"] >= len(cue_and_targets):
         return "All tasks completed. Thank you!"  # You can customize this response or redirect as needed
 
     data = cue_and_targets[session["word_index"]]
-    return render_template('semantic_similarity/drag.html', cue_word=data["cue"], target_words=data["targets"])
+    return render_template('semantic_similarity/drag.html', cue_word=data["cue"], target_words=data["targets"], trial_total = trial_total, trial_n =  session['trial_index'])
 
 # Semantic Similarity pause between categories
 @app.route('/semantic_similarity_pause', methods=['GET', 'POST'])
@@ -200,7 +209,7 @@ def save_response():
 
     #get current set of categories and targets for the session
     categories, cat_cue_targets = session_categories()
-    list_of_categories = list(categories)
+    list_of_categories = list(categories.keys())
 
     current_category = list_of_categories[session["category_index"]]
     # Retrieve the participant_id from the session
@@ -224,17 +233,14 @@ def save_response():
             return jsonify(status="completed", message="Category completed.")
         else:
             return jsonify(status="done", message="All categories completed.")
-
+    
 
 
 
 # reset sem index
 @app.route('/reset_index')
 def reset_index():
-    session["word_index"] = 0
-    session["category_index"] = 0
-    session["word_index_feat"] = 0
-    session["category_index_feat"] = 0
+    session.clear()
     return "Index reset to 0"
 
 @app.route('/feature_rating_intro', methods=['GET', 'POST'])
@@ -249,27 +255,32 @@ def feature_rating_intro():
 def feature_rating():
     session.setdefault("word_index_feat", 0)
     session.setdefault("category_index_feat", 0)
+    session.setdefault("trial_index_feat",0)
     
     #get current set of categories and dimensions for the session
     categories_feat, cat_dimensions = session_categories_feat()
-    list_of_categories_feat = list(categories_feat)
-    
+    list_of_categories_feat = list(categories_feat.keys())
     
     current_category = list_of_categories_feat[session["category_index_feat"]]
     cue_words = categories_feat[current_category]
     current_dimensions = cat_dimensions[current_category]
+    
+    
+    session['trial_index_feat'] += 1
+    trial_total_feat = session['trial_total_feat']
+    
     # Check if current index is out of range
     #if session["word_index_feat"] >= len(list_of_categories_feat):
      #   return "All tasks completed. Thank you!"  # You can customize this response or redirect as needed
     current_word = cue_words[session["word_index_feat"]]    
-    return render_template('feature_rating/rate.html',word=current_word, dimensions=current_dimensions)
+    return render_template('feature_rating/rate.html',word=current_word, dimensions=current_dimensions,trial_total = trial_total_feat, trial_n = session['trial_index_feat'])
 
 #save feature rating data
 @app.route('/feature_save', methods=['POST'])
 def feature_save():
     #get current set of categories and dimensions for the session
     categories_feat, cat_dimensions = session_categories_feat()
-    list_of_categories_feat = list(categories_feat)
+    list_of_categories_feat = list(categories_feat.keys())
     
     #get current category
     current_category = list_of_categories_feat[session["category_index_feat"]]
@@ -279,6 +290,8 @@ def feature_save():
     if participant_id is None:
         participant_id = "nones"
     current_word = cue_words[session["word_index_feat"]]
+    
+
                              
     # get dimension names to retrieve rating values
     dim0 = [dim[0] for dim in current_dimensions]

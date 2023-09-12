@@ -11,10 +11,18 @@
 
 <body>
 <br><br>
+
+<main>
+
 <div id="rotateDeviceAlert">
     <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
 </div>
-<main>
+
+
+<div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
 
 <div id="content">
   <form action="{{ url_for('feature_save') }}" method="post">
@@ -33,14 +41,14 @@
     
       <td class="dim-label-col left-label"><label>{{ dimension[0] }}</label>  </td>
       <td class="range-col"><input type="range" class="range "name="{{ dimension[0] }}" min="0" max="10"> 
-      
+      <output class="bubble"></output>
       </td>
       <td class="dim-label-col"><label>{{ dimension[1] }}</label>  </td>
 
     </tr>
     {% endfor %}
       </table>
-      <input type="submit" value="Submit" class="button medium">
+      <input type="submit" value="Siguiente" class="button medium">
       
   </form>
 </div>  
@@ -48,45 +56,54 @@
 
 <script>
 
-const allRanges = document.querySelectorAll(".dimension");
-allRanges.forEach(wrap => {
-  const range = wrap.querySelector(".range");
-  const bubble = wrap.querySelector(".bubble");
+  const allRanges = document.querySelectorAll(".range-col");
+  allRanges.forEach(wrap => {
+    const range = wrap.querySelector(".range");
+    const bubble = wrap.querySelector(".bubble");
 
-  range.addEventListener("input", () => {
+    range.addEventListener("input", () => {
+      setBubble(range, bubble);
+    });
     setBubble(range, bubble);
   });
-  setBubble(range, bubble);
-});
 
-function setBubble(range, bubble) {
-  const val = range.value;
-  const min = range.min ? range.min : 0;
-  const max = range.max ? range.max : 100;
-  const newVal = Number(((val - min) * 100) / (max - min));
-  bubble.innerHTML = val;
+  function setBubble(range, bubble) {
+    const val = range.value;
+    //symmetric value
+    const val_sym = Math.abs(range.value - range.max / 2);  
+    
+    const min = range.min ? range.min : 0;
+    const max = range.max ? range.max : 100;
+    
+    const newVal = Number(((val - min) * 100) / (max - min));
+    bubble.innerHTML = val_sym;
 
-  // Sorta magic numbers based on size of the native UI thumb
-  bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-}
+    // Sorta magic numbers based on size of the native UI thumb
+    bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+  }
 
 
-function checkOrientation() {
-    let alertBox = document.getElementById('rotateDeviceAlert');
-    let contenido = document.getElementById('content')
-    if (window.orientation === 0) { // 0 means portrait
-        alertBox.style.display = 'block';
-        contenido.style.display = 'none';
-    } else {
-        alertBox.style.display = 'none';
-        contenido.style.display = 'block';
-    }
-}
+  function checkOrientation() {
+      let alertBox = document.getElementById('rotateDeviceAlert');
+      let contenido = document.getElementById('content')
+      if (window.orientation === 0) { // 0 means portrait
+          alertBox.style.display = 'block';
+          contenido.style.display = 'none';
+      } else {
+          alertBox.style.display = 'none';
+          contenido.style.display = 'block';
+      }
+  }
 
-//chequea orientación al cargar la página
-checkOrientation();
+  //chequea orientación al cargar la página
+  checkOrientation();
 
-window.addEventListener("orientationchange", checkOrientation)
+  window.addEventListener("orientationchange", checkOrientation)
+
+  let progressPercentage = ( {{ trial_n }} / {{ trial_total }}  ) * 100;
+  document.getElementById('progress-bar').style.width = progressPercentage+'%';
+
+
 
 
 </script>

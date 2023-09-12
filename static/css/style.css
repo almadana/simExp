@@ -65,12 +65,32 @@
 
 .range-col{
   width: 60%;
+  position: relative;
 }
 
 .left-label{
   text-align: right;
 }
 
+
+.bubble {
+  background: transparent;
+  color: #544cbb;
+  padding: 1x 1px;
+  position: absolute;
+  border-radius: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  top: -1px;
+  left: 50%;
+}
 
 input[type="range"] {
     width: 100%; /* Adjust as needed */
