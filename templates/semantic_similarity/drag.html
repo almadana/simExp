@@ -30,9 +30,12 @@
         <br><br>
         <h2 id="cue_word">{{ cue_word }}</h2>
 
-        <div id="response-rectangle">
-            <!-- Items dragged here will appear -->
-        </div>
+        <div class="response-rectangle" id="response-rectangle-1">1</div>
+        <div class="response-rectangle" id="response-rectangle-2">2</div>
+        <div class="response-rectangle" id="response-rectangle-3">3</div>
+        <div class="response-rectangle" id="response-rectangle-4">4</div>
+        <div class="response-rectangle" id="response-rectangle-5">5</div>
+
 
 
         <div id="target-words">
@@ -54,41 +57,52 @@
 $(document).ready(function() {
     initializeDraggables();
 
-    $("#response-rectangle").droppable({
+    $(".response-rectangle").droppable({
         accept: ".draggable-word",
         drop: function(event, ui) {
-            const maxWords = 5;
-            const wordBeingDragged = ui.draggable.text().trim();
+            let $draggedFrom = ui.draggable.data('dragged-from');
 
-            let wordAlreadyExists = false;
-            $(this).find('.draggable-word').each(function() {
-                if ($(this).text().trim() === wordBeingDragged) {
-                    wordAlreadyExists = true;
-                    return false; // exit the .each() loop early
-                }
-            });
+            // If the rectangle already has a word and the dragged item isn't coming from the same rectangle, detach the existing word.
+            let $existingWord = $(this).is($draggedFrom) ? null : $(this).find(".draggable-word").detach();
 
-            if ($(this).find(".draggable-word").length < maxWords || wordAlreadyExists === true) {
-                ui.draggable.draggable('option', 'revert', false);
-                $(this).append(ui.draggable);
-                updateSelectedWords();
-                initializeDraggables();  // reinitialize draggables in case any property changed
-            } else {
-                ui.draggable.draggable('option', 'revert', true);
+            // Append the dragged word to the rectangle.
+            ui.draggable.draggable('option', 'revert', false);
+            $(this).append(ui.draggable);
+
+            // If dragged word originally came from another response-rectangle, place the stored word there.
+            if ($draggedFrom && !$draggedFrom.is($(this)) && $draggedFrom.hasClass('response-rectangle')) {
+                $draggedFrom.append($existingWord);
+                // Update the dragged-from property for the word we just placed into the old rectangle
+                $existingWord.data('dragged-from', $draggedFrom);
+            } else if ($existingWord) {
+                // If the dragged word came from the target-words area, move the stored word there.
+                $("#target-words").append($existingWord);
+                $existingWord.removeData('dragged-from'); // Clear the 'dragged-from' data since it's back in the pool
             }
+
+            // Update the origin of this word for future swaps
+            ui.draggable.data('dragged-from', $(this));
+
+            initializeDraggables();  // Reinitialize draggables in case any property changed
         }
     });
 
 
+    // Update for the target words area
     $("#target-words").droppable({
         accept: ".draggable-word",
         drop: function(event, ui) {
             ui.draggable.draggable('option', 'revert', false);
             $(this).append(ui.draggable);
-            updateSelectedWords();
-            initializeDraggables();  // reinitialize draggables
+            // Clear the 'dragged-from' data since it's back in the pool
+            ui.draggable.removeData('dragged-from');
+            initializeDraggables();  // Reinitialize draggables
         }
     });
+
+
+
+
     let progressPercentage = ( {{ trial_n }} / {{ trial_total }}  ) * 100;
     $('#progress-bar').width(progressPercentage + '%');
     
@@ -114,33 +128,41 @@ function initializeDraggables() {
         });
         $("#selected-words-input").val(selectedWords.join(','));
     }
-});
+    });
 
 
 $("#next-button").on("click", function() {
     // Gather selected words
     const selectedWords = [];
-    $("#response-rectangle").children().each(function() {
-        selectedWords.push($(this).text().trim());
+
+    $(".response-rectangle").each(function() {
+        const word = $(this).children(".draggable-word").text().trim();
+        if (word) { // Check if a word exists in the rectangle
+            selectedWords.push(word);
+        }
     });
 
     // Save to server
-    cue_word = document.querySelector("h2#cue_word").textContent;
-    document.getElementById("saving_status").innerHTML = "Guardando datos..."
-    $.post("http://digital.psico.edu.uy/semantica/similarity_save_response", { words: selectedWords, cue: cue_word  }, function(data) {
-        if (data.status === "success") {
-            // Reload the page for the next cue and target set
-            document.getElementById("saving_status").innerHTML = ""
-            location.reload();
-        } else if (data.status === "completed") {
-            // redirecto to next task
-            //$.post("/semantic_similarity_pause")
-            location.href = "/semantica/semantic_similarity_pause";
-        }
-        else if (data.status === "done") {
-            location.href = "/semantica/instrucciones_feat";
-        }
+    const cue_word = $("#cue_word").text().trim();
+    $("#saving_status").text("Guardando datos...");
 
+    $.post("http://digital.psico.edu.uy/semantica/similarity_save_response",
+        { words: selectedWords, cue: cue_word  },
+        function(data) {
+            if (data.status === "success") {
+                // Reload the page for the next cue and target set
+                $("#saving_status").text("");
+                location.reload();
+            } else if (data.status === "completed") {
+                // Redirect to next task
+                location.href = "/semantica/semantic_similarity_pause";
+            } else if (data.status === "done") {
+                location.href = "/semantica/instrucciones_feat";
+            }
+        }
+    ).fail(function() {
+        // Handle any errors from the server or network issues
+        $("#saving_status").text("Error al guardar. Por favor, inténtelo de nuevo.");
     });
 });
 
