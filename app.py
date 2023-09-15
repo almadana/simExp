@@ -173,8 +173,8 @@ def semantic_similarity_drag():
     session.setdefault("category_index", 0)
     session.setdefault("trial_index",0)
 
-    #if "categories" not in session.keys():
-    createStimuli()
+    if "categories" not in session:
+        createStimuli()
     
     #get current set of categories and targets for the session
     categories, cat_cue_targets = session_categories()
