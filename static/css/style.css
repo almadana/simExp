@@ -1,8 +1,17 @@
-#response-rectangle {
-    width: 90%;
-    height: 150px;
-    border: 2px dashed #ccc;
+.response-rectangle {
+    width: 15%;
+    height: 45px;
+    border: 2px dashed #cccc;
     margin-bottom: 20px;
+}
+
+#response-row{
+  width: 100%
+}
+
+table {
+    width: 100%;
+    display: table;
 }
 
 #progress-container {
