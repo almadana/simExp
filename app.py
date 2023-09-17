@@ -56,7 +56,7 @@ app.secret_key = 'i0TFFnfg3C'
 
 def createStimuli():
     # LOAD STIMULI
-    n_cats = 3
+    n_cats = 1
     categories = stimuli.get_cats(n_cats,BASE_DIR) # this gives 3 random categories
     cat_cue_targets = stimuli.gen_cue_cats(categories)
     cat_lengths = [len(cat) for cat in categories.values()]

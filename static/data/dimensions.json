@@ -55,13 +55,6 @@
         "odio/amor",
         "des\u00e1nimo/\u00e1nimo"
     ],
-    "clim\u00e1ticos": [
-        "tristeza/felicidad",
-        "ansiedad/tranquilidad",
-        "frustraci\u00f3n/satisfacci\u00f3n",
-        "brutalidad/ternura",
-        "des\u00e1nimo/\u00e1nimo"
-    ],
     "v\u00ednculos": [
         "ansiedad/tranquilidad",
         "odio/amor",
@@ -82,5 +75,96 @@
         "odio/amor",
         "aburrimiento/diversi\u00f3n",
         "des\u00e1nimo/\u00e1nimo"
+    ],
+    "instrumentos musicales": [
+        "grave/agudo",
+        "silencioso/bullicioso",
+        "peque\u00f1o/grande",
+        "estridente/armonioso",
+        "liviano/pesado"
+    ],
+    "veh\u00edculos": [
+        "silencioso/bullicioso",
+        "peque\u00f1o/grande",
+        "peligroso/seguro",
+        "abajo/arriba",
+        "adentro/afuera"
+    ],
+    "comidas": [
+        "salado/dulce",
+        "fr\u00edo/caliente",
+        "asqueroso/sabroso",
+        "apestoso/arom\u00e1tico",
+        "blando/duro"
+    ],
+    "bebidas": [
+        "fr\u00edo/caliente",
+        "amargo/dulce",
+        "no saludable/saludable",
+        "asqueroso/sabroso",
+        "artificial/natural"
+    ],
+    "materiales": [
+        "artificial/natural",
+        "blando/duro",
+        "liviano/pesado",
+        "fr\u00edo/caliente",
+        "\u00e1spero/suave"
+    ],
+    "higiene y cuidado personal": [
+        "\u00e1spero/suave",
+        "seco/mojado",
+        "barato/costoso",
+        "fr\u00edo/caliente",
+        "abajo/arriba"
+    ],
+    "estados fisiol\u00f3gicos": [
+        "no saludable / saludable",
+        "doloroso/placentero",
+        "adentro/afuera",
+        "inm\u00f3vil/m\u00f3vil",
+        "seco/mojado"
+    ],
+    "sustancias": [
+        "apestoso/arom\u00e1tico",
+        "desagradable/agradable",
+        "artificial/natural",
+        "sucio/limpio",
+        "seco/mojado"
+    ],
+    "plantas": [
+        "apestoso/arom\u00e1tico",
+        "desagradable/agradable",
+        "rugoso/liso",
+        "monocrom\u00e1tico/colorido",
+        "peque\u00f1o/grande"
+    ],
+    "animal": [
+        "peque\u00f1o/grande",
+        "silencioso/bullicioso",
+        "peligroso/seguro",
+        "liviano/pesado",
+        "sucio/limpio"
+    ],
+    "ropa": [
+        "monocrom\u00e1tico/colorido",
+        "\u00e1spero/suave",
+        "abajo/arriba",
+        "adentro/afuera",
+        "barato/costoso"
+    ],
+    "deportes": [
+        "abajo/arriba",
+        "atr\u00e1s/adelante",
+        "sucio/limpio",
+        "silencioso/bullicioso",
+        "peligroso/seguro"
+    ],
+    "acciones": [
+        "abajo/arriba",
+        "adentro/afuera",
+        "desagradable/agradable",
+        "doloroso/placentero",
+        "inm\u00f3vil/m\u00f3vil"
     ]
 }

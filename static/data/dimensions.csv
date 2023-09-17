@@ -1,12 +1,24 @@
-"ser","ansiedad/tranquilidad","frustración/satisfacción","cobardía/valentía","brutalidad/ternura","indiferencia/empatía"
-"sentirse","tristeza/felicidad","ansiedad/tranquilidad","frustración/satisfacción","odio/amor","desánimo/ánimo"
-"eventos","aburrimiento/diversión","frustración/satisfacción","cobardía/valentía","brutalidad/ternura","desánimo/ánimo"
-"salud-enfermedad/bienestar","asco/agrado","ansiedad/tranquilidad","desánimo/ánimo","frustración/satisfacción","vergüenza/orgullo"
-"lugares","aburrimiento/diversión","tristeza/felicidad","ansiedad/tranquilidad","odio/amor","desánimo/ánimo"
-"mentalización","tristeza/felicidad","frustración/satisfacción","odio/amor","vergüenza/orgullo","indiferencia/empatía"
-"acción","asco/agrado","frustración/satisfacción","odio/amor","vergüenza/orgullo","brutalidad/ternura"
-"ocio","aburrimiento/diversión","ansiedad/tranquilidad","frustración/satisfacción","odio/amor","desánimo/ánimo"
-"climáticos","tristeza/felicidad","ansiedad/tranquilidad","frustración/satisfacción","brutalidad/ternura","desánimo/ánimo"
-"vínculos","ansiedad/tranquilidad","odio/amor","vergüenza/orgullo","indiferencia/empatía","aburrimiento/diversión"
-"animales","asco/agrado","ansiedad/tranquilidad","cobardía/valentía","odio/amor","brutalidad/ternura"
-"deporte","tristeza/felicidad","frustración/satisfacción","odio/amor","aburrimiento/diversión","desánimo/ánimo"
+ser,ansiedad/tranquilidad,frustración/satisfacción,cobardía/valentía,brutalidad/ternura,indiferencia/empatía
+sentirse,tristeza/felicidad,ansiedad/tranquilidad,frustración/satisfacción,odio/amor,desánimo/ánimo
+eventos,aburrimiento/diversión,frustración/satisfacción,cobardía/valentía,brutalidad/ternura,desánimo/ánimo
+salud-enfermedad/bienestar,asco/agrado,ansiedad/tranquilidad,desánimo/ánimo,frustración/satisfacción,vergüenza/orgullo
+lugares,aburrimiento/diversión,tristeza/felicidad,ansiedad/tranquilidad,odio/amor,desánimo/ánimo
+mentalización,tristeza/felicidad,frustración/satisfacción,odio/amor,vergüenza/orgullo,indiferencia/empatía
+acción,asco/agrado,frustración/satisfacción,odio/amor,vergüenza/orgullo,brutalidad/ternura
+ocio,aburrimiento/diversión,ansiedad/tranquilidad,frustración/satisfacción,odio/amor,desánimo/ánimo
+vínculos,ansiedad/tranquilidad,odio/amor,vergüenza/orgullo,indiferencia/empatía,aburrimiento/diversión
+animales,asco/agrado,ansiedad/tranquilidad,cobardía/valentía,odio/amor,brutalidad/ternura
+deporte,tristeza/felicidad,frustración/satisfacción,odio/amor,aburrimiento/diversión,desánimo/ánimo
+instrumentos musicales,grave/agudo,silencioso/bullicioso,pequeño/grande,estridente/armonioso,liviano/pesado
+vehículos,silencioso/bullicioso,pequeño/grande,peligroso/seguro,abajo/arriba,adentro/afuera
+comidas,salado/dulce,frío/caliente,asqueroso/sabroso,apestoso/aromático,blando/duro
+bebidas,frío/caliente,amargo/dulce,no saludable/saludable,asqueroso/sabroso,artificial/natural
+materiales,artificial/natural,blando/duro,liviano/pesado,frío/caliente,áspero/suave
+higiene y cuidado personal,áspero/suave,seco/mojado,barato/costoso,frío/caliente,abajo/arriba
+estados fisiológicos,no saludable / saludable,doloroso/placentero,adentro/afuera,inmóvil/móvil,seco/mojado
+sustancias,apestoso/aromático,desagradable/agradable,artificial/natural,sucio/limpio,seco/mojado
+plantas,apestoso/aromático,desagradable/agradable,rugoso/liso,monocromático/colorido,pequeño/grande
+animal,pequeño/grande,silencioso/bullicioso,peligroso/seguro,liviano/pesado,sucio/limpio
+ropa,monocromático/colorido,áspero/suave,abajo/arriba,adentro/afuera,barato/costoso
+deportes,abajo/arriba,atrás/adelante,sucio/limpio,silencioso/bullicioso,peligroso/seguro
+acciones,abajo/arriba,adentro/afuera,desagradable/agradable,doloroso/placentero,inmóvil/móvil
