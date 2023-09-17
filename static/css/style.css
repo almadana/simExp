@@ -1,12 +1,16 @@
 .response-rectangle {
-    width: 15%;
+    width: 40%;
     height: 45px;
     border: 2px dashed #cccc;
     margin-bottom: 20px;
+    font-weight: bold;
+
 }
 
 #response-row{
-  width: 100%
+  width: 100%;
+  font-weight: bold;
+
 }
 
 table {
