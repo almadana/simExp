@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session, send_file
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import string, random, logging, stimuli
 import os
@@ -32,7 +33,8 @@ class Participant(db.Model):
     country_of_residence = db.Column(db.String, nullable=False)  # Added this field
     nivel_estudios = db.Column(db.String, nullable=False)
     primary_language = db.Column(db.String, nullable=False)
-    # ... other demographic data ...
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 
 class SemanticTask(db.Model):
@@ -41,6 +43,8 @@ class SemanticTask(db.Model):
     participant_id = db.Column(db.String, db.ForeignKey('participant.id'), nullable=False)
     cue_word = db.Column(db.String, nullable=False)
     selected_words = db.Column(db.String, nullable=False)  # Storing words as comma-separated string
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 class DimensionTask(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +53,7 @@ class DimensionTask(db.Model):
     cue_word = db.Column(db.String, nullable=False)
     dim = db.Column(db.String, nullable=False)  #dimension coordinates as signed Integer
     rating = db.Column(db.Integer, nullable=False)  #dimension coordinates as signed Integer
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
 # This secret key should ideally be in a config file and not hardcoded.
 app.secret_key = 'i0TFFnfg3C'
@@ -253,6 +258,19 @@ def save_response():
 def reset_index():
     session.clear()
     return "Index reset to 0"
+
+# reset sem index
+@app.route('/reset_cat')
+def reset_cat():
+    session.pop('categories')
+    session.pop('categories_feat')
+    session.pop('cat_cue_targets')
+    session.pop('cat_dimensions')
+    session.pop('trial_total')
+    session.pop('trial_total_feat')
+    return redirect(url_for('semantic_similarity_drag'))
+
+
 
 @app.route('/feature_rating_intro', methods=['GET', 'POST'])
 def feature_rating_intro():

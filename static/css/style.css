@@ -1,3 +1,20 @@
+.twitter-share-button {
+    display: inline-block;
+    background-color: #1DA1F2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.twitter-share-button:hover {
+    background-color: #0C84D2;
+}
+
+
 .response-rectangle {
     width: 40%;
     height: 45px;
