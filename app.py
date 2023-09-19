@@ -221,6 +221,7 @@ def save_response():
 
     print("pre commit")
     entry = SemanticTask(category=current_category,participant_id=participant_id, cue_word=cue_word, selected_words=",".join(selected_words))
+    print(entry)
     db.session.add(entry)
     db.session.commit()
     print("post commit")
