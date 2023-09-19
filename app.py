@@ -211,7 +211,6 @@ def save_response():
     #get current set of categories and targets for the session
     print("antes session")
     categories, cat_cue_targets = session_categories()
-    print("dps session")
     list_of_categories = list(categories.keys())
 
     current_category = list_of_categories[session["category_index"]]
@@ -220,9 +219,11 @@ def save_response():
     if not participant_id:
         return jsonify(status="error", message="No participant ID found")
 
+    print("pre commit")
     entry = SemanticTask(category=current_category,participant_id=participant_id, cue_word=cue_word, selected_words=",".join(selected_words))
     db.session.add(entry)
     db.session.commit()
+    print("post commit")
     #print(session["word_index"])
     # Move to the next cue and target set
     session["word_index"] += 1
