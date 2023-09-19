@@ -223,7 +223,7 @@ def save_response():
     print(participant_id)
     print(cue_word)
     print(selected_words)
-    print(cateogry)
+    print(current_category)
     entry = SemanticTask(category=current_category,participant_id=participant_id, cue_word=cue_word, selected_words=",".join(selected_words))
     print(entry)
     db.session.add(entry)
