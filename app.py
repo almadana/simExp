@@ -209,7 +209,9 @@ def save_response():
 
 
     #get current set of categories and targets for the session
+    print("antes session")
     categories, cat_cue_targets = session_categories()
+    print("dps session")
     list_of_categories = list(categories.keys())
 
     current_category = list_of_categories[session["category_index"]]
