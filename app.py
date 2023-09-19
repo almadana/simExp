@@ -220,6 +220,10 @@ def save_response():
         return jsonify(status="error", message="No participant ID found")
 
     print("pre commit")
+    print(cateogry)
+    print(participant_id)
+    print(cue_word)
+    print(selected_words)
     entry = SemanticTask(category=current_category,participant_id=participant_id, cue_word=cue_word, selected_words=",".join(selected_words))
     print(entry)
     db.session.add(entry)
