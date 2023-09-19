@@ -64,7 +64,7 @@ def createStimuli():
 
 
     # list of categories for feature task
-    categories_feat = stimuli.get_cats(3,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
+    categories_feat = stimuli.get_cats(n_cats,BASE_DIR) # this gives 3 random categories, a dictionary with cat name as keys, and cue words as values
     cat_dimensions = stimuli.get_dimensions(categories_feat,BASE_DIR) # dict with cate name as keys, list of dimensions (each dimension is a list of two poles) as values
     #list_of_categories_feat = list(categories_feat.keys())
     cat_lengths = [len(cat) for cat in categories_feat.values()]
@@ -175,7 +175,6 @@ def semantic_similarity_drag():
 
     if "categories" not in session:
         createStimuli()
-    
     #get current set of categories and targets for the session
     categories, cat_cue_targets = session_categories()
     
@@ -183,7 +182,6 @@ def semantic_similarity_drag():
     current_category = list_of_categories[session["category_index"]]
     cue_and_targets = cat_cue_targets[current_category]
     
-    session['trial_index'] += 1
     trial_total = session['trial_total']
     
     
@@ -202,6 +200,8 @@ def semantic_similarity_pause():
 
 @app.route('/similarity_save_response', methods=['POST'])
 def save_response():
+    print(session["categories"])
+    print(session["word_index"])
     selected_words = request.form.getlist('words[]')
     cue_word = request.form.getlist('cue')
     cue_word = cue_word[0] #this should only be an element, but it's a list with only one element...
@@ -223,6 +223,7 @@ def save_response():
     print(session["word_index"])
     # Move to the next cue and target set
     session["word_index"] += 1
+    session['trial_index'] += 1
     print(session["category_index"])
     if session["word_index"] < len(categories[current_category]): #we should run all the members of the current category
         return jsonify(status="success", message="Data saved successfully.")
