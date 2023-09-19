@@ -200,8 +200,9 @@ def semantic_similarity_pause():
 
 @app.route('/similarity_save_response', methods=['POST'])
 def save_response():
-    print(session["categories"])
-    print(session["word_index"])
+    print("save response!")
+    #print(session["categories"])
+    #print(session["word_index"])
     selected_words = request.form.getlist('words[]')
     cue_word = request.form.getlist('cue')
     cue_word = cue_word[0] #this should only be an element, but it's a list with only one element...
@@ -220,11 +221,12 @@ def save_response():
     entry = SemanticTask(category=current_category,participant_id=participant_id, cue_word=cue_word, selected_words=",".join(selected_words))
     db.session.add(entry)
     db.session.commit()
-    print(session["word_index"])
+    #print(session["word_index"])
     # Move to the next cue and target set
     session["word_index"] += 1
     session['trial_index'] += 1
-    print(session["category_index"])
+    #print(session["category_index"])
+    print("avance!")
     if session["word_index"] < len(categories[current_category]): #we should run all the members of the current category
         return jsonify(status="success", message="Data saved successfully.")
     else:
