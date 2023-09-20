@@ -268,7 +268,11 @@ def reset_cat():
     session.pop('cat_dimensions')
     session.pop('trial_total')
     session.pop('trial_total_feat')
-    return redirect(url_for('semantic_similarity_drag'))
+    session.pop('word_index')
+    session.pop('word_index_feat')
+    session.pop('trial_index')
+    session.pop('trial_index_feat')
+    return redirect(url_for('/instrucciones_drag'))
 
 
 
