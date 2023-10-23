@@ -162,24 +162,27 @@ def sociodemo():
         # Rest of the code (like saving sociodemographic info)...
         # ...
 
+        #set defaults
+            # Initialize the current index in session if it doesn't exist
+        session.setdefault("word_index", 0)
+        session.setdefault("category_index", 0)
+        session.setdefault("trial_index",0)
+
+        #init categories
+        #if "categories" not in session:
+        createStimuli()
+
+
         # Redirect to semantic_similarity_drag
-        return redirect(url_for('instrucciones_drag'))
+        #return redirect(url_for('instrucciones_drag'))
+        return redirect(url_for('feature_rating_intro'))
     return render_template('sociodemo/sociodemo.html')
-
-
-
 
 
 # Semantic Similarity Route
 @app.route('/semantic_similarity_drag', methods=['GET', 'POST'])
 def semantic_similarity_drag():
-    # Initialize the current index in session if it doesn't exist
-    session.setdefault("word_index", 0)
-    session.setdefault("category_index", 0)
-    session.setdefault("trial_index",0)
 
-    if "categories" not in session:
-        createStimuli()
     #get current set of categories and targets for the session
     categories, cat_cue_targets = session_categories()
     
@@ -346,7 +349,7 @@ def feature_save():
         session["word_index_feat"] = 0
         session["category_index_feat"] += 1
         if session["category_index_feat"]   >= len(list_of_categories_feat):
-            return redirect(url_for('gracias'))
+            return redirect(url_for('semantic_similarity_drag'))
         return redirect(url_for('feature_pause'))
     
     return redirect(url_for('feature_rating'))
