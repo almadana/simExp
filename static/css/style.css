@@ -1,3 +1,19 @@
+.copylink-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.copylink-button:hover {
+  background-color: #45a049;
+}
+
+
+
 .twitter-share-button {
     display: inline-block;
     background-color: #1DA1F2;
