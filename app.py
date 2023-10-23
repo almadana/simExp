@@ -349,7 +349,7 @@ def feature_save():
         session["word_index_feat"] = 0
         session["category_index_feat"] += 1
         if session["category_index_feat"]   >= len(list_of_categories_feat):
-            return redirect(url_for('semantic_similarity_drag'))
+            return redirect(url_for('instrucciones_drag'))
         return redirect(url_for('feature_pause'))
     
     return redirect(url_for('feature_rating'))
