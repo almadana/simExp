@@ -31,12 +31,18 @@
 }
 
 
+.cue_title {
+  float: left;
+  height: 40px;
+}
+
 .response-rectangle {
     width: 40%;
     height: 45px;
     border: 2px dashed #cccc;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
+    float: left;
 }
 
 #response-rectangle-1{
@@ -46,6 +52,11 @@
 .siguiente-container{
     margin-left: 30px;
     margin-bottom: 20px;
+    float: right;
+}
+
+.row{
+  height: 50px;
 }
 
 #response-row{
@@ -198,8 +209,8 @@ input[type="range"]::-moz-range-thumb {
 #target-words {
     width: 100%;
     border: 1px solid #ccc;
-    height: 200px;
-    overflow-y: scroll;
+    height: 250px;
+    overflow-y: auto;
 }
 
 @font-face {

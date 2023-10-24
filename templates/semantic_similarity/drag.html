@@ -28,16 +28,18 @@
 
 <div id="content">
 
-        <h2 id="cue_word">{{ cue_word }}</h2>
 
         <div class="row">
-            <div class="response-rectangle" id="response-rectangle-1">1</div>
+           <div class="cue_title">
+                <h2  id="cue_word">{{ cue_word }}</h2>
+            </div>
             <div class="siguiente-container">
                 <button id="next-button" class="button medium">Siguiente</button>
                 <p id="saving_status"></p>
             </div>
         </div>
-
+        <br>
+        <div class="response-rectangle" id="response-rectangle-1">1</div>
         <div class="response-rectangle" id="response-rectangle-2">2</div>
         <div class="response-rectangle" id="response-rectangle-3">3</div>
         <div class="response-rectangle" id="response-rectangle-4">4</div>
@@ -187,7 +189,9 @@ function checkOrientation() {
     if (window.orientation === 0) { // 0 means portrait
         alertBox.style.display = 'none';
     } else {
-        alertBox.style.display = 'block';
+        if (window.orientation === 1) {
+            alertBox.style.display = 'block';
+        }
     }
 }
 
