@@ -257,19 +257,19 @@ footer .institucion {
   background: none;
   border: 3px solid hsl(0,0%,70%);
   border-radius: 10px;
-  padding: 1rem;
+  padding: .5rem;
   text-decoration: none;
   color: hsl(186, 100%, 33%);
-  font: 2rem "comfortaa", sans-serif;
+  font: 1rem "comfortaa", sans-serif;
 }
 
 .button.quiero_participar {
   border: 3px solid hsl(0,0%,70%);
   border-radius: 10px;
-  padding: 1rem;
+  padding: .5rem;
   text-decoration: none;
   color: black;
-  font-size: 2rem;
+  font-size: 1rem;
   box-shadow: 3px 2px 5px hsl(0,0%,40%);
 }
 
