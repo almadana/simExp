@@ -107,7 +107,7 @@ def index():
 @app.route('/info', methods=['GET', 'POST'])
 def info():
     if request.method == 'POST':
-        return redirect(url_for('consentimiento'))
+        return redirect(url_for('intro'))
     return render_template('info/info.html')
 
 
