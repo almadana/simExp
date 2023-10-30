@@ -13,13 +13,8 @@
 
 
 <body>
-<br><br>
 
 <main>
-
-<div id="rotateDeviceAlert">
-    <b>¡¡Por favor rotá tu dispositivo y ponelo horizontal!!</b>
-</div>
 
 
 <div id="progress-container">
@@ -86,22 +81,25 @@
   }
 
 
-  function checkOrientation() {
-      let alertBox = document.getElementById('rotateDeviceAlert');
-      let contenido = document.getElementById('content')
-      if (window.orientation === 0) { // 0 means portrait
-          alertBox.style.display = 'block';
-          contenido.style.display = 'none';
+  function checkWidth() {
+      //let alertBox = document.getElementById('rotateDeviceAlert');
+      //let contenido = document.getElementById('content')
+      let elements = document.querySelectorAll('.rating-table');
+      if (window.innerWidth < 500) { // 0 means portrait
+        elements.forEach((element) => {
+          element.style.width = '300px';
+        });
       } else {
-          alertBox.style.display = 'none';
-          contenido.style.display = 'block';
+        elements.forEach((element) => {
+          element.style.width = '90%';
+        });
       }
   }
 
-  //chequea orientación al cargar la página
-  checkOrientation();
+  //chequea tamaño al cargar la página
+  checkWidth();
 
-  window.addEventListener("orientationchange", checkOrientation)
+  window.addEventListener("orientationchange", checkWidth)
 
   let progressPercentage = ( {{ trial_n }} / {{ trial_total }}  ) * 100;
   document.getElementById('progress-bar').style.width = progressPercentage+'%';

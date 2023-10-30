@@ -84,6 +84,7 @@ table {
 
 .rating-table{
   width: 90%;
+  max-width: 700px;
   height: 180px;
   background-color: #ffffff;
 }
